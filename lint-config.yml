@@ -2,7 +2,10 @@ exclude_paths:
   - ./.circleci/  
 parseable: true
 skip_list:
-  - '401'
+  - '201'
+  - 'E403'
+  - 'E201'
+  - '403'
 use_default_rules: true
 verbosity: 1
 warn_list:
