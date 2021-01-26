@@ -9,7 +9,7 @@ workflows:
   ansible-using-orbs:
     jobs:
       - ansible/ansible-lint:
-          config: ./lint-config.yml
+          config: ./lint-config/lint-config.yml
       - ansible/ansible-playbook-syntax:
           dir: .
           depth: 1
