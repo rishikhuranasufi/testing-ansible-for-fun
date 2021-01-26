@@ -13,9 +13,8 @@ jobs:
       name: ansible/default
     steps:
     - checkout
-    - ansible/lint
-        config: ./lint-config.yml              
-
+    - ansible/lint:
+        config: ./lint-config.yml
   run-ansible:
     executor:
       name: ansible-playbook/default
@@ -44,3 +43,4 @@ workflows:
           requires:
             - ansible-lint
             - run-ansible
+        
