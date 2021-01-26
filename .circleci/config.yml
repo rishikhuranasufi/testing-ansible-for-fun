@@ -13,7 +13,7 @@ jobs:
       name: ansible/default
     steps:
     - checkout
-    - ansible/lint
+    - ansible/lint:
         config: ./lint-config.yml              
 
   run-ansible:
