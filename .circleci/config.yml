@@ -2,14 +2,15 @@ version: 2.1
 
 orbs:
   #ansible: orbss/ansible@0.2.3
-  ansible: brittlejf/ansible@0.1.1
+  ansible: hux/ansible@0.1.6
   #ansible-playbook: orbss/ansible-playbook@0.0.5
 
 workflows:
   ansible-using-orbs:
     jobs:
-      - ansible/lint:
+      - ansible/ansible-lint:
           config: ./lint-config.yml
-      - ansible/playbook-syntax:
-          directory: .
+      - ansible/ansible-playbook-syntax:
+          dir: .
+          depth: 1
         
