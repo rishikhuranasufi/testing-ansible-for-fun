@@ -10,5 +10,6 @@ workflows:
     jobs:
       - ansible/lint:
           config: ./lint-config.yml
-      - ansible/playbook-syntax
+      - ansible/playbook-syntax:
+          directory: .
         
