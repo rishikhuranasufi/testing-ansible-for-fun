@@ -1,0 +1,42 @@
+version: 2.1
+
+orbs:
+  ansible: orbss/ansible@0.2.3
+  ansible-playbook: orbss/ansible-playbook@0.0.5
+  slack: circleci/slack@4.2.0
+
+jobs:
+  ansible-lint:
+    working_directory: /tmp/ansible
+    executor:
+      name: ansible/ubuntu18-ansible-apt
+    steps:
+    - checkout
+    - ansible/ansible-lint
+
+  run-ansible:
+    executor:
+      name: ansible-playbook/default
+    steps:    
+    - ansible-playbook/install
+    - ansible-playbook/playbook:
+        playbook: apache-server.yml
+  run-intergration-tests:
+    executor:
+      name: ansible-playbook/default
+    steps:    
+    - ansible-playbook/install
+    - ansible-playbook/playbook:
+        playbook: apache-server.yml
+
+workflows:
+  ansible-using-orbs:
+    jobs:
+      - ansible-lint
+      - run-ansible:
+          requires:
+            - ansible-lint
+      - run-intergration-tests:
+          requires:
+            - ansible-lint
+            - run-ansible
