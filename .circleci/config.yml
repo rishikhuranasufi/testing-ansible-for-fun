@@ -17,14 +17,14 @@ jobs:
   run-ansible:
     executor:
       name: ansible-playbook/default
-    steps:    
+    steps:
     - ansible-playbook/install
     - ansible-playbook/playbook:
         playbook: apache-server.yml
   run-intergration-tests:
     executor:
       name: ansible-playbook/default
-    steps:    
+    steps:
     - ansible-playbook/install
     - ansible-playbook/playbook:
         playbook: apache-server.yml
