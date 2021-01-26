@@ -19,6 +19,7 @@ jobs:
       name: ansible-playbook/default
     steps:
     - checkout
+    - run: sudo apt install -y python3
     - ansible-playbook/install
     - ansible-playbook/playbook:
         playbook: apache-server.yml
