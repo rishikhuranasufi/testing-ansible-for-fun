@@ -3,13 +3,6 @@ exclude_paths:
 parseable: true
 skip_list:
   - '201'
-  - 'E403'
-  - 'E201'
   - '403'
 use_default_rules: true
 verbosity: 1
-warn_list:
-  - '201'
-  - 'E403'
-  - 'E201'
-  - '403'
