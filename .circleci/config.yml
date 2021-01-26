@@ -18,6 +18,7 @@ jobs:
     executor:
       name: ansible-playbook/default
     steps:
+    - checkout
     - ansible-playbook/install
     - ansible-playbook/playbook:
         playbook: apache-server.yml
