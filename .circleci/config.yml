@@ -2,12 +2,12 @@ version: 2.1
 
 orbs:
   #ansible: orbss/ansible@0.2.3
-  ansible: hux/ansible@0.1.6
+  ansible: brittlejf/ansible@0.1.1
   #ansible-playbook: orbss/ansible-playbook@0.0.5
 
 workflows:
   ansible-using-orbs:
     jobs:
-      - ansible/ansible-lint:
+      - ansible/lint:
           config: ./lint-config.yml
         
