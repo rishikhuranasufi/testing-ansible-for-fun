@@ -1,7 +1,8 @@
 version: 2.1
 
 orbs:
-  ansible: orbss/ansible@0.2.3
+  #ansible: orbss/ansible@0.2.3
+  ansible: brittlejf/ansible@0.1.1
   ansible-playbook: orbss/ansible-playbook@0.0.5
   slack: circleci/slack@4.2.0
 
@@ -9,10 +10,11 @@ jobs:
   ansible-lint:
     working_directory: /tmp/ansible
     executor:
-      name: ansible/ubuntu18-ansible-apt
+      name: ansible/default
     steps:
     - checkout
-    - ansible/ansible-lint
+    - ansible/lint
+        config: ./lint-config.yml              
 
   run-ansible:
     executor:
