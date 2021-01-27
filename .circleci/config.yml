@@ -13,7 +13,7 @@ jobs:
     steps:
     - checkout
     - run:
-        name: TODO : Will execute ansible playbook later in this job
+        name: TODO Will execute ansible playbook later in this job
         command: |
           echo "Empty job to run ansible playbook"
     - slack/notify:
