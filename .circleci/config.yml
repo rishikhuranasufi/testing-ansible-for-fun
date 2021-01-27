@@ -45,7 +45,7 @@ workflows:
           requires:
             - pause_for_approval
             - ansible/ansible-lint
-      - run_ansible:
+      - run-ansible:
           requires:
             - ansible/ansible-playbook-syntax
           context: slack-secrets
