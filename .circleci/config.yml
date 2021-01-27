@@ -13,7 +13,7 @@ workflows:
           context: slack-secrets
           mentions: "@elon"
           requires:
-            - ansible-lint
+            - ansible/ansible-lint
       - pause_for_approval:
           requires:
             - ansible/ansible-lint
