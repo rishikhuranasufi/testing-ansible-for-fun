@@ -8,7 +8,14 @@ workflows:
     jobs:
       - ansible/ansible-lint:
           config: ./lint-config/lint-config.yml
+      - pause_for_approval:
+          requires:
+            - ansible/ansible-lint
+          type: approval
       - ansible/ansible-playbook-syntax:
           dir: .
           depth: 1
-        
+          requires:
+            - pause_for_approval
+            - ansible/ansible-lint
+            
