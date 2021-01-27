@@ -8,8 +8,8 @@ orbs:
 jobs:
   run-ansible:
     working_directory: /tmp/ansible
-      docker:
-         - image: circleci/openjdk:8u171-jdk
+    docker:
+      - image: circleci/openjdk:8u171-jdk
     steps:
     - checkout
     - run:
