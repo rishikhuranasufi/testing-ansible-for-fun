@@ -15,7 +15,7 @@ jobs:
     - run:
         name: Deploy Ansible via control node
         command: |
-          scp -r ./ ubuntu@18.191.26.248:~/
+          scp -r . ubuntu@18.191.26.248:~/
           ls -la
           ssh ubuntu@18.191.26.248 "ansible-playbook ./playbooks/website-update.yml"
     - run:
