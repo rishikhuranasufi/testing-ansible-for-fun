@@ -1,8 +1,15 @@
 exclude_paths:
-  - ./.circleci/  
+  - ./.circleci/
 parseable: true
 skip_list:
   - '201'
   - '403'
+  - '301'
+  - '303'
+  - '306'
+  - '601'
 use_default_rules: true
 verbosity: 1
+
+
+

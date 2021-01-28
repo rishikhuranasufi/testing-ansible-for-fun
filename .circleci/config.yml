@@ -1,53 +1,15 @@
 version: 2.1
 
-orbs:  
+orbs:
   ansible: hux/ansible@0.1.6
-  slack: circleci/slack@4.2.0
-  
-  
-jobs:
-  run-ansible:
-    working_directory: /tmp/ansible
-    docker:
-      - image: circleci/openjdk:8u171-jdk
-    steps:
-    - checkout
-    - run:
-        name: TODO Will execute ansible playbook later in this job
-        command: |
-          echo "Empty job to run ansible playbook"
-    - slack/notify:
-        event: fail
-        mentions: "<@elon>"
-        template: basic_fail_1
-    - slack/notify:
-        event: pass        
-        template: success_tagged_deploy_1        
 
 workflows:
   ansible-using-orbs:
     jobs:
       - ansible/ansible-lint:
           config: ./lint-config/lint-config.yml
-      - slack/on-hold:
-          context: slack-secrets
-          mentions: "@elon"
-          requires:
-            - ansible/ansible-lint
-      - pause_for_approval:
-          requires:
-            - ansible/ansible-lint
-            - slack/on-hold
-          type: approval
       - ansible/ansible-playbook-syntax:
-          dir: .
+          dir: ./playbooks
           depth: 1
-          requires:
-            - pause_for_approval
-            - ansible/ansible-lint
-      - run-ansible:
-          requires:
-            - ansible/ansible-playbook-syntax
-          context: slack-secrets
-      
-            
+
+
