@@ -3,7 +3,26 @@ version: 2.1
 orbs:  
   ansible: hux/ansible@0.1.6
   slack: circleci/slack@4.2.0
-
+jobs:
+  run-ansible:
+    working_directory: /tmp/ansible
+    machine: true
+    steps:
+    - add_ssh_keys:
+          fingerprints:
+            - "b6:6c:11:1f:a3:ee:dd:a4:e3:d6:0e:99:e8:fe:ba:b9"
+    - checkout
+    - run:
+        name: TODO Will execute ansible playbook later in this job
+        command: |
+          echo "Empty job to run ansible playbook"
+    - slack/notify:
+        event: fail
+        mentions: "<@elon>"
+        template: basic_fail_1
+    - slack/notify:
+        event: pass        
+        template: success_tagged_deploy_1
 workflows:
   ansible-using-orbs:
     jobs:
@@ -23,3 +42,7 @@ workflows:
           depth: 1
           requires:
             - pause_for_approval            
+      - run-ansible:
+          requires:
+            - ansible/ansible-playbook-syntax
+          context: slack-secrets
