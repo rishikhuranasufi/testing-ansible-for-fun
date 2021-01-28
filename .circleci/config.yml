@@ -1,15 +1,20 @@
 version: 2.1
 
-orbs:
-  ansible: hux/ansible@0.1.6
+orbs:  
+  ansible: hux/ansible@0.1.6  
 
 workflows:
   ansible-using-orbs:
     jobs:
       - ansible/ansible-lint:
           config: ./lint-config/lint-config.yml
+      - pause_for_approval:
+          requires:
+            - ansible/ansible-lint
+          type: approval
       - ansible/ansible-playbook-syntax:
-          dir: ./playbooks
+          dir: .
           depth: 1
-
-
+          requires:
+            - pause_for_approval
+            - ansible/ansible-lint
