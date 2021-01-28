@@ -19,7 +19,7 @@ jobs:
           ls -la
           scp -r /tmp/ansible ubuntu@18.191.26.248:~/
           ls -la
-          ssh ubuntu@18.191.26.248 "ls -la && ansible-playbook ./playbooks/website-update.yml"
+          ssh ubuntu@18.191.26.248 "ansible-playbook website-update.yml && cd ansible && ls -la"
     - run:
         name: Validation of deployed Apache Server
         command: |
