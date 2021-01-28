@@ -18,9 +18,9 @@ jobs:
           scp *.* ubuntu@18.191.26.248:~/
           ssh ubuntu@18.191.26.248 "ansible-playbook ./playbooks/apache-install.yml"
     -run:
-       name: Validation of deployed Apache Server
-       command: |
-         curl http://18.191.26.248/index.html
+        name: Validation of deployed Apache Server
+        command: |
+          curl http://18.191.26.248/index.html
     - slack/notify:
         event: fail
         mentions: "<@elon>"
