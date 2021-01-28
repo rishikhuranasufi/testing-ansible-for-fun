@@ -16,5 +16,4 @@ workflows:
           dir: .
           depth: 1
           requires:
-            - pause_for_approval
-            - ansible/ansible-lint
+            - pause_for_approval            
