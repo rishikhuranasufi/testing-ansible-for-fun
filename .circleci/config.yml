@@ -15,8 +15,8 @@ jobs:
     - run:
         name: Deploy Ansible via control node
         command: |
-          scp *.* ubuntu@18.191.26.248:~/
-          ssh ubuntu@18.191.26.248 "ansible-playbook ./playbooks/apache-install.yml"
+          scp ./playbooks/*.yml ubuntu@18.191.26.248:~/
+          ssh ubuntu@18.191.26.248 "ansible-playbook apache-install.yml"
     - run:
         name: Validation of deployed Apache Server
         command: |
