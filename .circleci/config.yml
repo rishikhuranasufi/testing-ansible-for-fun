@@ -17,9 +17,8 @@ jobs:
         command: |
           pwd
           ls -la
-          scp -r /tmp/ansible ubuntu@18.191.26.248:~/
-          ls -la
-          ssh ubuntu@18.191.26.248 "cp ~/ansible/ ."
+          scp -r /tmp/ansible/playbooks ubuntu@18.191.26.248:~/
+          scp -r /tmp/ansible/roles ubuntu@18.191.26.248:~/                    
           ssh ubuntu@18.191.26.248 "ansible-playbook ./playbooks/website-update.yml"
     - run:
         name: Validation of deployed Apache Server
