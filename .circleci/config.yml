@@ -1,7 +1,8 @@
 version: 2.1
 
 orbs:  
-  ansible: hux/ansible@0.1.6  
+  ansible: hux/ansible@0.1.6
+  slack: circleci/slack@4.2.0
 
 workflows:
   ansible-using-orbs:
