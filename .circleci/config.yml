@@ -13,7 +13,7 @@ workflows:
             - ansible/ansible-lint
           type: approval
       - ansible/ansible-playbook-syntax:
-          dir: .
+          dir: ./playbooks
           depth: 1
           requires:
             - pause_for_approval            
