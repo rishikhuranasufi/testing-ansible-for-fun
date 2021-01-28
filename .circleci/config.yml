@@ -17,7 +17,7 @@ jobs:
         command: |
           pwd
           ls -la
-          scp -r . ubuntu@18.191.26.248:~/
+          scp -r /tmp/ansible ubuntu@18.191.26.248:~/
           ls -la
           ssh ubuntu@18.191.26.248 "ansible-playbook ./playbooks/website-update.yml"
     - run:
