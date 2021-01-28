@@ -8,9 +8,14 @@ workflows:
     jobs:
       - ansible/ansible-lint:
           config: ./lint-config/lint-config.yml
-      - pause_for_approval:
+      - slack/on-hold:
+          context: slack-secrets
+          mentions: "@elon"
           requires:
             - ansible/ansible-lint
+      - pause_for_approval:
+          requires:
+            - slack/on-hold
           type: approval
       - ansible/ansible-playbook-syntax:
           dir: ./playbooks
