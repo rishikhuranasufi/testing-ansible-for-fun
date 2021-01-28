@@ -13,7 +13,7 @@ jobs:
             - "b6:6c:11:1f:a3:ee:dd:a4:e3:d6:0e:99:e8:fe:ba:b9"
     - checkout
     - run:
-        name: TODO Will execute ansible playbook later in this job
+        name: TODO  Will execute ansible playbook later in this job
         command: |
           echo "Empty job to run ansible playbook"
     - slack/notify:
