@@ -28,6 +28,25 @@ jobs:
     - slack/notify:
         event: pass        
         template: success_tagged_deploy_1
+  run-intergration-tests:
+    machine: true
+    steps:
+    - add_ssh_keys:
+          fingerprints:
+            - "b6:6c:11:1f:a3:ee:dd:a4:e3:d6:0e:99:e8:fe:ba:b9"
+    - checkout
+    - run:
+        name: Execute test cases via control node
+        command: |
+          scp ./playbooks/*.yml ubuntu@18.191.26.248:~/
+          ssh ubuntu@18.191.26.248 "ansible-playbook website-test.yml"
+    - slack/notify:
+        event: fail
+        mentions: "<@elon>"
+        template: basic_fail_1
+    - slack/notify:
+        event: pass
+        template: success_tagged_deploy_1        
 workflows:
   ansible-using-orbs:
     jobs:
@@ -50,4 +69,8 @@ workflows:
       - run-ansible:
           requires:
             - ansible/ansible-playbook-syntax
+          context: slack-secrets
+      - run-intergration-tests:
+          requires:            
+            - run-ansible
           context: slack-secrets
