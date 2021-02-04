@@ -1,7 +1,8 @@
 version: 2.1
 
 orbs:  
-  ansible: hux/ansible@0.1.6
+  #ansible: hux/ansible@0.1.6
+  ansible: rishikhuranasufi/ansible-techno-trainer@1.0.0
   slack: circleci/slack@4.2.0
 jobs:
   run-ansible:
@@ -15,8 +16,6 @@ jobs:
     - run:
         name: Deploy Ansible via control node
         command: |
-          pwd
-          ls -la
           scp -r /tmp/ansible/playbooks ubuntu@18.191.26.248:~/
           scp -r /tmp/ansible/roles ubuntu@18.191.26.248:~/                    
           ssh ubuntu@18.191.26.248 "ansible-playbook ./playbooks/website-update.yml"
@@ -54,26 +53,4 @@ workflows:
   ansible-using-orbs:
     jobs:
       - ansible/ansible-lint:
-          config: ./lint-config/lint-config.yml
-      - slack/on-hold:
-          context: slack-secrets
-          mentions: "@elon"
-          requires:
-            - ansible/ansible-lint
-      - pause_for_approval:
-          requires:
-            - slack/on-hold
-          type: approval
-      - ansible/ansible-playbook-syntax:
-          dir: ./playbooks
-          depth: 1
-          requires:
-            - pause_for_approval            
-      - run-ansible:
-          requires:
-            - ansible/ansible-playbook-syntax
-          context: slack-secrets
-      - run-intergration-tests:
-          requires:            
-            - run-ansible
-          context: slack-secrets
+          config: ./lint-config/lint-config.yml      
